@@ -1,0 +1,20 @@
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Article List</ion-title>
+</ion-navbar>
+
+<ion-content>
+	<ion-card *ngFor="#item of items">
+		  <img src="img/appicon.png"/>
+		  <ion-card-content (click)="itemTapped($event, item)">
+			<ion-card-title>
+			  Title
+			  </ion-card-title>
+			<h2>{{item.annotation_id}} {{item.user.name}}</h2>
+		<p [innerHTML]="item.annotation_html"></p>
+		  </ion-card-content>
+</ion-card>	
+  <button (click)="loadData()">Load More</button>
+</ion-content>
