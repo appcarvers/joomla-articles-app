@@ -2,16 +2,16 @@
     <button menuToggle *ngIf="!selectedItem">
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{selectedItem.user.name}}</ion-title>
+    <ion-title>{{selectedItem.title}}</ion-title>
 </ion-navbar>
-
-<ion-content>
-	<ion-card>
-		  <img src="img/appicon.png"/>		 
+<ion-content>	
+	<ion-card>		 
 		  <ion-card-content>
-			<ion-card-title>
-			  </ion-card-title>
-			Multiline lists are identical to regular lists, except they can multiple lines of text. When multiple 		
-		  </ion-card-content>
+			<img src="{{selectedItem.created_by.avatar}}">			 			
+				<h4 [innerHTML]="selectedItem.fulltext"></h4>											
+				<h4>By : {{selectedItem.created_by.name}}</h4>
+				<h4>Category : {{selectedItem.catid.title}}</h4>
+				<h4>Created Date : {{selectedItem.created}}</h4>
+		  </ion-card-content>		  
 </ion-card>	
 </ion-content>
