@@ -1,0 +1,60 @@
+<ion-navbar *navbar>
+  <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Add Article</ion-title>
+</ion-navbar>
+<ion-content padding class="login">
+  <ion-list>
+    <form #addarticleForm="ngForm" novalidate>
+      <ion-item>
+        <ion-label floating primary>Article Name</ion-label>
+        <ion-input [(ngModel)]="addarticle.articlename" ngControl="articlename" type="text" #articlename="ngForm" required>
+        </ion-input>
+      </ion-item>
+      <p [hidden]="articlename.valid || submitted == false" danger padding-left>
+        Article Name is required
+      </p>
+      <ion-item>
+        <ion-label floating primary>Introtext</ion-label>
+        <ion-textarea [(ngModel)]="addarticle.introtext" ngControl="introtext"  #introtext="ngForm" required></ion-textarea>
+      </ion-item>
+      <p [hidden]="introtext.valid || submitted == false" danger padding-left>
+        Article Name is required
+      </p>
+      <ion-item>
+        <ion-label floating primary>Category</ion-label>
+        <ion-select [(ngModel)]="addarticle.cat">
+        <ion-option value="10">Category 2</ion-option>
+        <ion-option value="20">Category 3</ion-option>
+        <ion-option value="30">Category 4</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>    
+        <label class="item item-input">
+        <span primary class="input-label">Published</span>
+        <input [(ngModel)]="addarticle.published" ngControl="published"  #published="ngForm" required type="date">
+        </label>
+      </ion-item>
+      <p [hidden]="published.valid || submitted == false" danger padding-left>
+        Published date is required
+      </p>
+      
+      <ion-item>
+         <label class="item">
+			 <span primary class="input-label">Unpublished</span>
+          <input [(ngModel)]="addarticle.unpublished" ngControl="unpublished"  #unpublished="ngForm" required type="date">
+        </label>
+      </ion-item>
+      <p [hidden]="unpublished.valid || submitted == false" danger padding-left>
+        Unpublished date is required
+      </p>
+      <ion-row responsive-sm>
+        <ion-col>
+          <button  (click)="postData(addarticleForm)" primary block>Submit</button>
+          <!--button *ngIf="updateButton" (click)="updateMenu(addarticleForm)" type="submit" primary block>Update</button-->
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-list>
+</ion-content>
