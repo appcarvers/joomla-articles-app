@@ -1,0 +1,30 @@
+<ion-navbar *navbar>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Add Category</ion-title>
+</ion-navbar>
+
+<ion-content padding class="login">
+    <ion-list>
+		<form #addcatForm="ngForm" novalidate>
+			<ion-item>
+                <ion-label floating primary>Category Title</ion-label>
+                <ion-input [(ngModel)]="addcat.catname" ngControl="catname" type="text" #catname="ngForm" required>
+                </ion-input>
+            </ion-item>
+			<p [hidden]="catname.valid || submitted == false" danger padding-left>
+                Category Title is required
+            </p>
+			<ion-item>
+                <ion-label floating primary>Description</ion-label>               
+					 <ion-textarea [(ngModel)]="addcat.fulltext" ngControl="fulltext"  #fulltext="ngForm" required></ion-textarea>   				           
+            </ion-item>
+			<p [hidden]="fulltext.valid || submitted == false" danger padding-left>
+                Description is required
+            </p>		
+    <button (click)="postData(addcatForm)" type="submit" primary block>Submit</button>
+				
+		</form>
+    </ion-list>
+</ion-content>

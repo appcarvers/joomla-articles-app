@@ -1,0 +1,20 @@
+<ion-menu [content]="content">
+  <ion-toolbar>
+    <ion-title>Joomla Articles</ion-title>
+  </ion-toolbar>
+  <ion-content>		
+		<ion-list>	
+		  <button menuClose ion-item *ngFor="#p of pages" (click)="openPage(p)">
+			{{p.title}}
+		  </button>  
+		</ion-list>
+	<ion-list>
+		  <ion-list-header>	Categories </ion-list-header>
+		  <ion-item menuClose *ngFor="#p1 of items" (click)="openPage1(p1)">{{p1.title}}</ion-item>
+	</ion-list>	
+	<button menuClose ion-item  (click)="Logout()">
+        Logout
+      </button>
+  </ion-content>
+</ion-menu>
+<ion-nav id="nav" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

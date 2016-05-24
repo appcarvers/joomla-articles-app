@@ -1,0 +1,42 @@
+<ion-navbar *navbar>
+	<button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+	<ion-title *ngIf="!selectedtitle">Articles List</ion-title>
+	<ion-title *ngIf="selectedtitle">{{selectedtitle}}</ion-title>
+</ion-navbar>
+ <ion-toolbar>
+  <ion-searchbar primary
+  				 *ngIf="enableSearchbar"
+                 [(ngModel)]="searchQuery"
+                 (search)="getItems($event)"
+				 (clear)="clearSearch()"
+                 placeholder="Search">
+  </ion-searchbar>
+</ion-toolbar>
+<ion-content class="card-background-page">
+		 <ion-item  class="item no-padding" *ngFor="#item of items">
+			<ion-card class="cardwidth" (click)="itemTapped($event, item)">
+				<ion-refresher *ngIf="enablePullToRefresh" (refresh)="doRefresh($event)">
+						<ion-refresher-content></ion-refresher-content>
+					</ion-refresher>					
+					<ion-card-content>
+						<img src="{{item.images.intro_image}}" fallbackSrc>
+						 <ion-card-title>
+						<h4><b>	{{item.title}}	</b></h4>			
+						 </ion-card-title>
+							<h4 class="no-lap" [innerHTML]="item.introtext"></h4>							
+							<b>By : </b>{{item.created_by.name}}	<br>				
+							<b>Date </b> : {{item.created}}		<br>							
+					</ion-card-content>	
+			</ion-card>  									
+		</ion-item> 
+		<ion-card *ngIf="!noitem">  
+			  <ion-card-content >
+				No more data to display
+			  </ion-card-content>
+		</ion-card>    
+	<ion-infinite-scroll  *ngIf="enableifinitescroll" (infinite)="loadData($event)" threshold="5%">
+		<ion-infinite-scroll-content></ion-infinite-scroll-content>
+	</ion-infinite-scroll>
+</ion-content>
