@@ -91,6 +91,7 @@ export class AddArticlePage {
     }
     success = (result: any): void => {
         let file = JSON.parse(result.response);
+        console.log("In article view : img file path get from server ="+file.filepath);
         this.datatobesend += '&intro_image=' + file.filepath + '&full_image=' + file.filepath;
         this.postData();
         this.loading.dismiss();
@@ -133,7 +134,6 @@ export class AddArticlePage {
             let state = 1;
             let date = new Date();
             let FromDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
-
             if (published < FromDate) {
                 this.uniteToast.toastOptions.message = "Enter valid Start publishing date";
                 this.uniteToast.showToast();

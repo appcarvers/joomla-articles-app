@@ -9,8 +9,13 @@
 		  </button>  
 		</ion-list>
 	<ion-list>
-		  <ion-list-header>	Categories </ion-list-header>
-		  <ion-item menuClose *ngFor="#p1 of items" (click)="openPage1(p1)">{{p1.title}}</ion-item>
+		  <ion-list-header (click)="hideCat()">	Categories 
+				<ion-icon  *ngIf="hidecat"   item-left name="ios-arrow-up"></ion-icon>
+				<ion-icon  *ngIf="!hidecat"  item-left name="ios-arrow-down"></ion-icon>		
+			</ion-list-header>				
+			<ion-item *ngIf="hidecat">
+		  		<ion-item menuClose *ngFor="#p1 of items" (click)="openPage(p1)">{{p1.title}}</ion-item>
+			</ion-item>
 	</ion-list>	
 	<button menuClose ion-item  (click)="Logout()">
         Logout

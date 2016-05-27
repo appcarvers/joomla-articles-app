@@ -27,15 +27,20 @@ class MyApp {
   items: any;
   uniteItem: any;
   submenuitem: boolean;
+  unitetoast : UniteToast;
   category: string;
   siteconfig: any;
-  constructor(private app: IonicApp, uniteItem: UniteItem, private platform: Platform, uniteMenu: UniteMenu, private events: Events, private zone: NgZone, siteconfig: SiteConfig) {
+  hidecat : boolean;
+
+  constructor(private app: IonicApp,  uniteItem: UniteItem, private platform: Platform, uniteMenu: UniteMenu, private events: Events, private zone: NgZone, siteconfig: SiteConfig, unitetoast : UniteToast) {
     this.initializeApp();
     this.uniteMenu = uniteMenu;
     this.submenuitem = false;
-    this.category = "false"
+    this.category = "false";
+    this.unitetoast = unitetoast;
     this.siteconfig = siteconfig;
-    this.uniteMenu.menuMap = {
+    this.hidecat = false;
+        this.uniteMenu.menuMap = {
       'GettingStartedPage': GettingStartedPage,
       'ListPage': ListPage,
       'DetailsPage': DetailsPage,
@@ -101,33 +106,14 @@ class MyApp {
         this.uniteMenu.updateMenu(res[0]);
       });
     });
+    
+       
   }
-
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
+ openPage(page) {
     let nav = this.app.getComponent('nav');
-
-    if (page.component == 'CatPage' && this.submenuitem == false) {
-      this.submenuitem = true;
-
-      nav.setRoot(ListPage, { item: page.id });
-    } else {
-      this.submenuitem = false;
-    }
-
-
-    if (page.id) {
-      nav.setRoot(ListPage, { item: page.id });
-      // nav.setRoot(this.uniteMenu.menuMap[ListPage]), {item: page.id});
-    } else {
-
-      nav.setRoot(this.uniteMenu.menuMap[page.component]);
-    }
-  }
-
-  openPage1(page) {
-    let nav = this.app.getComponent('nav');
+    if(page.component)
+     nav.setRoot(this.uniteMenu.menuMap[page.component], { item: page.id, title: page.title });
+    else
     nav.setRoot(ListPage, { item: page.id, title: page.title });
   }
   Logout() {
@@ -135,14 +121,17 @@ class MyApp {
     let nav = this.app.getComponent('nav');
     nav.setRoot(LoginPage);
   }
-  // loadData() {
-  //      let url = this.siteconfig.getConfig().siteurl + '/index.php?option=com_api&app=categories&resource=categories&format=raw&lang=en&key=' + this.siteconfig.getConfig().authkey;
-  //       this.uniteItem.getData(url).then((value: any) => {
-  // 	if(value){
-  // 			this.items = value;
-  // 		}
-  // 	});
-  // }
+
+ hideCat()
+  {  
+    if(this.hidecat == false)
+    {    
+      this.hidecat = true;
+    }
+    else{this.hidecat = false;
+       }
+  }
+     
   loadData() {
     let config = this.siteconfig.getConfig();
     let url = config.siteurl + '/index.php?option=com_api&app=categories&resource=categories&format=raw&lang=en&key=' + config.authkey;
@@ -152,4 +141,8 @@ class MyApp {
       }
     });
   }
+  
+ 
+  
+  
 }
