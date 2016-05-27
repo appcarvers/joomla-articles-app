@@ -8,10 +8,11 @@
 	<ion-card>		 
 		  <ion-card-content>
 			<img src="{{selectedItem.images.full_image_url}} " fallbackSrc><br>		 												
-				<h4 class="no-lap" [innerHTML]="selectedItem.fulltext"></h4><br>											
-				<h4>By : {{selectedItem.created_by.name}}</h4>
-				<h4>Category : {{selectedItem.catid.title}}</h4>
-				<h4>Created Date : {{selectedItem.created}}</h4>
+				<h4 class="no-lap" [innerHTML]="selectedItem.fulltext"></h4><br>												
+			<h4>	<ion-row><ion-col width-30>By  </ion-col> <ion-col width-10>  : </ion-col> <ion-col width-50>{{selectedItem.created_by.name}}</ion-col></ion-row>
+				<ion-row><ion-col width-30>Category </ion-col> <ion-col width-10>: </ion-col> <ion-col width-50>{{selectedItem.catid.title}}</ion-col></ion-row>
+				<ion-row><ion-col width-30> Created Date </ion-col> <ion-col width-10>: </ion-col> <ion-col width-50>{{selectedItem.created}}</ion-col></ion-row>
+		 </h4>
 		  </ion-card-content>		  
 </ion-card>	
 </ion-content>

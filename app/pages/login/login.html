@@ -8,6 +8,9 @@
 <ion-content padding class="login">
     <ion-list>
         <form #loginForm="ngForm" novalidate>
+<!--
+			 <button primary block>Demo</button>
+-->
             <ion-item>
                 <ion-label floating primary>Site URL</ion-label>
                 <ion-input [(ngModel)]="login.siteurl" ngControl="siteurl" type="text" #siteurl="ngForm" required>
@@ -34,7 +37,8 @@
             </p>
             <ion-row>
              <button  (click)="onLogin(loginForm)" type="submit" primary block>Login</button>
-              </ion-row>            
+              </ion-row>
+            
         </form>
     </ion-list>
 </ion-content>
